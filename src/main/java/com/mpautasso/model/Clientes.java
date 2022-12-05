@@ -18,4 +18,8 @@ public abstract class Clientes {
 
     private String nombre;
     private String apellido;
+
+    /*
+    List<Servicios> serviciosContratados;
+     */
 }
