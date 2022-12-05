@@ -1,7 +1,7 @@
-package com.mpautasso.Service.Implementation;
+package com.mpautasso.service.Implementation;
 
-import com.mpautasso.Service.PrestacionesService;
-import com.mpautasso.model.Prestaciones;
+import com.mpautasso.service.PrestacionesService;
+import com.mpautasso.model.Prestacion;
 import com.mpautasso.repository.PrestacionesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,12 +14,12 @@ public class PrestacionesServiceImpl implements PrestacionesService {
     private final PrestacionesRepository prestacionesRepository;
 
     @Override
-    public List<Prestaciones> listarPrestaciones() {
+    public List<Prestacion> listarPrestaciones() {
         return prestacionesRepository.findAll();
     }
 
     @Override
-    public Prestaciones crearPrestacion(Prestaciones prestacionesRequest) {
+    public Prestacion crearPrestacion(Prestacion prestacionRequest) {
         return null;
     }
 

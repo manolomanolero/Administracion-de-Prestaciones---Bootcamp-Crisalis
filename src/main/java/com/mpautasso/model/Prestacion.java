@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="tipo_prestacion",
         discriminatorType = DiscriminatorType.STRING)
-public abstract class Prestaciones {
+public abstract class Prestacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
