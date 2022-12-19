@@ -11,5 +11,7 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @DiscriminatorValue("producto")
 public class Productos extends Prestacion {
-
+    public Productos(String nombre, Double costo){
+        super(nombre, costo);
+    }
 }
