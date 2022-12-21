@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ProductoRequest {
+public class ServicioRequest {
     private String nombre;
     private Double costo;
 }
