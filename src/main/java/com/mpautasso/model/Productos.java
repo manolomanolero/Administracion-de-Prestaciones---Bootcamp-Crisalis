@@ -14,4 +14,14 @@ public class Productos extends Prestacion {
     public Productos(String nombre, Double costo){
         super(nombre, costo);
     }
+
+    @Override
+    public String getType() {
+        return "Producto";
+    }
+
+    @Override
+    public String toString(){
+        return "Producto(nombre = " + getNombre() + ", costo = " + getCosto() + ")";
+    }
 }
