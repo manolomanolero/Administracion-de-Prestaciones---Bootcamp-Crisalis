@@ -1,19 +1,21 @@
 package com.mpautasso.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Data
 @Entity
-@AllArgsConstructor
-@DiscriminatorValue("not null")
-public class RepresentanteEmpresa extends Clientes{
-    /* TODO: resolver incompatibilidad con discriminator value. Doble mapeo de columna
-    @Column(name = "empresa_id")
-    private Long empresaId;*/
+@NoArgsConstructor
+@DiscriminatorValue("1")
+public class RepresentanteEmpresa extends Cliente {
+    public RepresentanteEmpresa(Long dni, String nombre, String apellido, Empresa empresa) {
+        super(dni, nombre, apellido, empresa);
+    }
+
+    @Override
+    public String getType() {
+        return "Representante empresa";
+    }
 }

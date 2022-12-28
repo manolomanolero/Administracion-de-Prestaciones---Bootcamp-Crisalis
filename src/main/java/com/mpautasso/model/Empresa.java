@@ -15,12 +15,22 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private Long cuit;
 
-    @Column(name = "razon_social")
+    @Column(name = "razon_social", unique = true)
     private String razonSocial;
 
-    /* TODO: implementar fecha de inicio
+    public Empresa(Long id) {
+        this.id = id;
+    }
+
+    public Empresa(Long cuit, String razonSocial) {
+        this.cuit = cuit;
+        this.razonSocial = razonSocial;
+    }
+
+/* TODO: implementar fecha de inicio
     fechaInicio
      */
 

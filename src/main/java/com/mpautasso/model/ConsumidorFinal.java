@@ -9,7 +9,16 @@ import javax.persistence.Entity;
 
 @Data
 @Entity
-@AllArgsConstructor
-@DiscriminatorValue("null")
-public class ConsumidorFinal extends Clientes{
+@NoArgsConstructor
+@DiscriminatorValue("2")
+public class ConsumidorFinal extends Cliente {
+
+    public ConsumidorFinal(Long dni, String nombre, String apellido) {
+        super(dni, nombre, apellido);
+    }
+
+    @Override
+    public String getType() {
+        return "Consumidor final";
+    }
 }
