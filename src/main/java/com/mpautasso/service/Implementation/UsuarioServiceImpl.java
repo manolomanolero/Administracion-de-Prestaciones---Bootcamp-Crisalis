@@ -1,9 +1,9 @@
 package com.mpautasso.service.Implementation;
 
-import com.mpautasso.dto.AuthRequest;
-import com.mpautasso.dto.AuthResponse;
-import com.mpautasso.dto.UsuarioRegisterResponse;
-import com.mpautasso.dto.UsuarioRequest;
+import com.mpautasso.dto.authentication.AuthRequest;
+import com.mpautasso.dto.authentication.AuthResponse;
+import com.mpautasso.dto.authentication.UsuarioRegisterResponse;
+import com.mpautasso.dto.authentication.UsuarioRequest;
 import com.mpautasso.exception.EntityNotFoundException;
 import com.mpautasso.exception.InvalidArgumentException;
 import com.mpautasso.exception.InvalidPetitionException;
@@ -78,7 +78,7 @@ public class UsuarioServiceImpl {
         Usuario usuario = (Usuario) authentication.getPrincipal();
         String accessToken = jwtUtils.generateAccessToken(usuario);
 
-        return new AuthResponse(accessToken);
+        return new AuthResponse(accessToken, usuario.getUsername());
     }
 
 
@@ -111,12 +111,8 @@ public class UsuarioServiceImpl {
 
     //Busca si existe un usuario en la BD por username o email
     private boolean existeUsuario(Usuario usuario) {
-        boolean existe = false;
-        if(usuarioRepository.findByUsername(usuario.getUsername()).isPresent() ||
-                usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
-            existe = true;
-        }
-        return existe;
+        return usuarioRepository.findByUsername(usuario.getUsername()).isPresent() ||
+                usuarioRepository.findByEmail(usuario.getEmail()).isPresent();
     }
 
 }

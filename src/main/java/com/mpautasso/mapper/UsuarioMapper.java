@@ -1,8 +1,8 @@
 package com.mpautasso.mapper;
 
-import com.mpautasso.dto.AuthRequest;
-import com.mpautasso.dto.UsuarioRegisterResponse;
-import com.mpautasso.dto.UsuarioRequest;
+import com.mpautasso.dto.authentication.AuthRequest;
+import com.mpautasso.dto.authentication.UsuarioRegisterResponse;
+import com.mpautasso.dto.authentication.UsuarioRequest;
 import com.mpautasso.model.Usuario;
 import org.springframework.stereotype.Component;
 

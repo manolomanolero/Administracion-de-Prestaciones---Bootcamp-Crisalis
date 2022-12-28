@@ -1,10 +1,8 @@
 package com.mpautasso.controller;
 
-import com.mpautasso.dto.AuthRequest;
-import com.mpautasso.dto.UsuarioRegisterResponse;
-import com.mpautasso.dto.UsuarioRequest;
-import com.mpautasso.model.Usuario;
-import com.mpautasso.security.MyAuthenticationManager;
+import com.mpautasso.dto.authentication.AuthRequest;
+import com.mpautasso.dto.authentication.UsuarioRegisterResponse;
+import com.mpautasso.dto.authentication.UsuarioRequest;
 import com.mpautasso.service.Implementation.UsuarioServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
