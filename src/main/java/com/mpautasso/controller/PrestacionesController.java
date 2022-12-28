@@ -1,9 +1,7 @@
 package com.mpautasso.controller;
 
-import com.mpautasso.dto.PrestacionResponse;
-import com.mpautasso.dto.ProductoRequest;
-import com.mpautasso.dto.ServicioRequest;
-import com.mpautasso.model.Prestacion;
+import com.mpautasso.dto.prestaciones.PrestacionRequest;
+import com.mpautasso.dto.prestaciones.PrestacionResponse;
 import com.mpautasso.service.PrestacionesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/prestaciones")
 @RequiredArgsConstructor
+@CrossOrigin
 public class PrestacionesController {
     private final PrestacionesService prestacionesService;
 
@@ -23,13 +22,14 @@ public class PrestacionesController {
         return ResponseEntity.ok(prestacionesService.listarPrestaciones());
     }
 
-    @PostMapping("/productos")
-    public ResponseEntity<PrestacionResponse> crearProducto(@RequestBody ProductoRequest productoRequest){
-        return ResponseEntity.status(HttpStatus.CREATED).body(prestacionesService.crearPrestacion(productoRequest));
+    @PostMapping
+    public ResponseEntity<PrestacionResponse> crearPrestacion(@RequestBody PrestacionRequest prestacionRequest){
+        return ResponseEntity.status(HttpStatus.CREATED).body(prestacionesService.crearPrestacion(prestacionRequest));
     }
-    @PostMapping("/servicios")
-    public ResponseEntity<PrestacionResponse> crearServicio(@RequestBody ServicioRequest servicioRequest){
-        return ResponseEntity.status(HttpStatus.CREATED).body(prestacionesService.crearPrestacion(servicioRequest));
+
+    @PutMapping
+    public ResponseEntity<PrestacionResponse> actualizarPrestacion(@RequestBody PrestacionRequest prestacionRequest){
+        return ResponseEntity.status(HttpStatus.OK).body(prestacionesService.crearPrestacion(prestacionRequest));
     }
 
     @DeleteMapping
