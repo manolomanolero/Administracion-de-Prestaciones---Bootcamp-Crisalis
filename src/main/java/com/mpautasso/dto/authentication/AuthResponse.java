@@ -1,4 +1,4 @@
-package com.mpautasso.dto;
+package com.mpautasso.dto.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,4 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class AuthResponse {
     private final String token;
+    private final String username;
 }

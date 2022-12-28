@@ -1,4 +1,4 @@
-package com.mpautasso.dto;
+package com.mpautasso.dto.authentication;
 
 import lombok.Data;
 
