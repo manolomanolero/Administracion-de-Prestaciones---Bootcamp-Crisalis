@@ -1,11 +1,13 @@
-package com.mpautasso.dto;
+package com.mpautasso.dto.prestaciones;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ProductoRequest {
+public class PrestacionResponse {
+    private Long id;
     private String nombre;
     private Double costo;
+    private String tipo;
 }

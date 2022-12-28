@@ -1,11 +1,11 @@
 package com.mpautasso.mapper;
 
-import com.mpautasso.dto.PrestacionResponse;
-import com.mpautasso.dto.ProductoRequest;
-import com.mpautasso.dto.ServicioRequest;
+import com.mpautasso.dto.prestaciones.PrestacionRequest;
+import com.mpautasso.dto.prestaciones.PrestacionResponse;
+import com.mpautasso.exception.InvalidArgumentException;
 import com.mpautasso.model.Prestacion;
-import com.mpautasso.model.Productos;
-import com.mpautasso.model.Servicios;
+import com.mpautasso.model.Producto;
+import com.mpautasso.model.Servicio;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,17 +14,18 @@ import org.springframework.stereotype.Component;
 public class PrestacionMapper {
     @Autowired
     private ModelMapper modelMapper;
-    //TODO implementaciones con model mapper
 
-    public Productos productoRequestToEntity(ProductoRequest productoRequest){
-        return new Productos(productoRequest.getNombre(), productoRequest.getCosto());
+    public PrestacionResponse prestacionEntityToDto(Prestacion prestacion) {
+        return new PrestacionResponse(prestacion.getId(), prestacion.getNombre(), prestacion.getCosto(), prestacion.getType());
     }
 
-    public Servicios servicioRequestToEntity(ServicioRequest servicioRequest){
-        return new Servicios(servicioRequest.getNombre(), servicioRequest.getCosto());
-    }
-
-    public PrestacionResponse prestacionEntityToDto(Prestacion prestacion){
-        return new PrestacionResponse(prestacion.getNombre(), prestacion.getCosto(), prestacion.getType());
+    public Prestacion prestacionRequestToEntity(PrestacionRequest prestacionRequest) {
+        if (prestacionRequest.getTipo().equalsIgnoreCase("servicio")) {
+            return new Servicio(prestacionRequest.getNombre(), prestacionRequest.getCosto());
+        }
+        if (prestacionRequest.getTipo().equalsIgnoreCase("producto")) {
+            return new Producto(prestacionRequest.getNombre(), prestacionRequest.getCosto());
+        }
+        throw new InvalidArgumentException("Tipo invalido de prestacion");
     }
 }

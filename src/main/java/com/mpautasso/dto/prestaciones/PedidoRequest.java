@@ -1,5 +1,6 @@
-package com.mpautasso.dto;
+package com.mpautasso.dto.prestaciones;
 
+import com.mpautasso.dto.ImpuestosRequest;
 import com.mpautasso.model.Prestacion;
 import lombok.Data;
 
