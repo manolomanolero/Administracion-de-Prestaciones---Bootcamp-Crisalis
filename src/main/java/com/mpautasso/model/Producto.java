@@ -9,19 +9,19 @@ import javax.persistence.Entity;
 @Entity
 @Data
 @AllArgsConstructor
-@DiscriminatorValue("servicio")
-public class Servicios extends Prestacion {
-
-    public Servicios(String nombre, Double costo){
+@DiscriminatorValue("producto")
+public class Producto extends Prestacion {
+    public Producto(String nombre, Double costo){
         super(nombre, costo);
     }
 
     @Override
     public String getType() {
-        return "Servicio";
+        return "Producto";
     }
+
     @Override
     public String toString(){
-        return "Servicio(nombre = " + getNombre() + ", costo = " + getCosto() + ")";
+        return "Producto(nombre = " + getNombre() + ", costo = " + getCosto() + ")";
     }
 }
