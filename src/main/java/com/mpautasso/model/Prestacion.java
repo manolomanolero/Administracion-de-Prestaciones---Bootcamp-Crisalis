@@ -12,20 +12,21 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "prestaciones")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="tipo_prestacion",
+@DiscriminatorColumn(name = "tipo_prestacion",
         discriminatorType = DiscriminatorType.STRING)
 public abstract class Prestacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(unique = true)
     private String nombre;
     private Double costo;
 
-    public Prestacion(String nombre, Double costo){
+    public Prestacion(String nombre, Double costo) {
         this.nombre = nombre.toLowerCase();
         this.costo = costo;
     }
+
     public abstract String getType();
 
 }
