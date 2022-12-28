@@ -1,12 +1,9 @@
 package com.mpautasso.service.Implementation;
 
-import com.mpautasso.dto.PrestacionResponse;
-import com.mpautasso.dto.ProductoRequest;
-import com.mpautasso.dto.ServicioRequest;
+import com.mpautasso.dto.prestaciones.PrestacionRequest;
+import com.mpautasso.dto.prestaciones.PrestacionResponse;
 import com.mpautasso.exception.InvalidArgumentException;
 import com.mpautasso.mapper.PrestacionMapper;
-import com.mpautasso.model.Productos;
-import com.mpautasso.model.Servicios;
 import com.mpautasso.service.PrestacionesService;
 import com.mpautasso.model.Prestacion;
 import com.mpautasso.repository.PrestacionesRepository;
@@ -26,20 +23,28 @@ public class PrestacionesServiceImpl implements PrestacionesService {
     @Override
     public List<PrestacionResponse> listarPrestaciones() {
         var prestaciones = prestacionesRepository.findAll();
-        System.out.println(prestaciones);
         return prestaciones.stream().map(prestacionMapper::prestacionEntityToDto).collect(Collectors.toList());
     }
 
     @Override
-    public PrestacionResponse crearPrestacion(ProductoRequest productoRequest) {
-        Productos producto = prestacionMapper.productoRequestToEntity(productoRequest);
-        return prestacionMapper.prestacionEntityToDto(prestacionesRepository.save(producto));
+    public PrestacionResponse crearPrestacion(PrestacionRequest prestacionRequest) {
+        if(prestacionesRepository.existsByNombre(prestacionRequest.getNombre())){
+            throw  new InvalidArgumentException("Ya existe una prestacion de " + prestacionRequest.getNombre());
+        }
+        Prestacion prestacion = prestacionMapper.prestacionRequestToEntity(prestacionRequest);
+        return prestacionMapper.prestacionEntityToDto(prestacionesRepository.save(prestacion));
     }
 
     @Override
-    public PrestacionResponse crearPrestacion(ServicioRequest servicioRequest) {
-        Servicios servicio = prestacionMapper.servicioRequestToEntity(servicioRequest);
-        return prestacionMapper.prestacionEntityToDto(prestacionesRepository.save(servicio));
+    public PrestacionResponse actualizarPrestacion(PrestacionRequest prestacionRequest) {
+        Optional<Prestacion> prestacionOptBD = prestacionesRepository.findByNombre(prestacionRequest.getNombre());
+        if(prestacionOptBD.isPresent()){
+            Prestacion prestacionBD = prestacionOptBD.get();
+            prestacionBD.setCosto(prestacionRequest.getCosto());
+            return prestacionMapper.prestacionEntityToDto(prestacionesRepository.save(prestacionBD));
+        } else {
+            throw new InvalidArgumentException("No se encontro la prestacion a actualizar");
+        }
     }
 
     @Override
