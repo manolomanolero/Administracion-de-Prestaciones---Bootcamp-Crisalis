@@ -1,7 +1,9 @@
 package com.mpautasso.controller;
 
+import com.mpautasso.dto.StringResponse;
 import com.mpautasso.dto.prestaciones.PrestacionRequest;
 import com.mpautasso.dto.prestaciones.PrestacionResponse;
+import com.mpautasso.dto.prestaciones.PrestacionUpdateRequest;
 import com.mpautasso.service.PrestacionesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,20 +24,25 @@ public class PrestacionesController {
         return ResponseEntity.ok(prestacionesService.listarPrestaciones());
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<PrestacionResponse> buscarPrestacion(@RequestParam Long id){
+        return ResponseEntity.ok(prestacionesService.buscarPrestacion(id));
+    }
+
     @PostMapping
     public ResponseEntity<PrestacionResponse> crearPrestacion(@RequestBody PrestacionRequest prestacionRequest){
         return ResponseEntity.status(HttpStatus.CREATED).body(prestacionesService.crearPrestacion(prestacionRequest));
     }
 
     @PutMapping
-    public ResponseEntity<PrestacionResponse> actualizarPrestacion(@RequestBody PrestacionRequest prestacionRequest){
-        return ResponseEntity.status(HttpStatus.OK).body(prestacionesService.crearPrestacion(prestacionRequest));
+    public ResponseEntity<PrestacionResponse> actualizarPrestacion(@RequestBody PrestacionUpdateRequest prestacionRequest){
+        return ResponseEntity.ok(prestacionesService.actualizarPrestacion(prestacionRequest));
     }
 
     @DeleteMapping
-    public ResponseEntity<String> eliminarPrestacion(@RequestParam String nombre){
-        prestacionesService.eliminarPrestacion(nombre);
-        return ResponseEntity.status(HttpStatus.OK).body("Borrado de la prestacion " + nombre +" con exito");
+    public ResponseEntity<StringResponse> eliminarPrestacion(@RequestParam Long id){
+        prestacionesService.eliminarPrestacion(id);
+        return ResponseEntity.ok(new StringResponse("Borrado de la prestacion con exito"));
     }
 
 }

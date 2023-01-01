@@ -2,6 +2,8 @@ package com.mpautasso.service.Implementation;
 
 import com.mpautasso.dto.prestaciones.PrestacionRequest;
 import com.mpautasso.dto.prestaciones.PrestacionResponse;
+import com.mpautasso.dto.prestaciones.PrestacionUpdateRequest;
+import com.mpautasso.exception.EntityNotFoundException;
 import com.mpautasso.exception.InvalidArgumentException;
 import com.mpautasso.mapper.PrestacionMapper;
 import com.mpautasso.service.PrestacionesService;
@@ -36,25 +38,32 @@ public class PrestacionesServiceImpl implements PrestacionesService {
     }
 
     @Override
-    public PrestacionResponse actualizarPrestacion(PrestacionRequest prestacionRequest) {
-        Optional<Prestacion> prestacionOptBD = prestacionesRepository.findByNombre(prestacionRequest.getNombre());
-        if(prestacionOptBD.isPresent()){
-            Prestacion prestacionBD = prestacionOptBD.get();
-            prestacionBD.setCosto(prestacionRequest.getCosto());
-            return prestacionMapper.prestacionEntityToDto(prestacionesRepository.save(prestacionBD));
+    public PrestacionResponse buscarPrestacion(Long id) {
+        Optional<Prestacion> prestacion = prestacionesRepository.findById(id);
+        if(prestacion.isEmpty()){
+            throw new EntityNotFoundException("No se encontró la prestación a editar");
+        }
+        return prestacionMapper.prestacionEntityToDto(prestacion.get());
+    }
+
+    @Override
+    public PrestacionResponse actualizarPrestacion(PrestacionUpdateRequest prestacionRequest) {
+        if(prestacionesRepository.existsById(prestacionRequest.getId())){
+            return prestacionMapper.prestacionEntityToDto(
+                    prestacionesRepository.save(
+                            prestacionMapper.prestacionUpdateRequestToEntity(prestacionRequest)));
         } else {
             throw new InvalidArgumentException("No se encontro la prestacion a actualizar");
         }
     }
 
     @Override
-    public void eliminarPrestacion(String nombrePrestacion) {
-        Optional<Prestacion> prestacion = prestacionesRepository.findByNombre(nombrePrestacion);
+    public void eliminarPrestacion(Long id) {
+        Optional<Prestacion> prestacion = prestacionesRepository.findById(id);
         if(prestacion.isPresent()){
             prestacionesRepository.delete(prestacion.get());
         } else {
             throw new InvalidArgumentException("No se encontro la prestacion a borrar");
         }
     }
-
 }
