@@ -2,6 +2,7 @@ package com.mpautasso.mapper;
 
 import com.mpautasso.dto.prestaciones.PrestacionRequest;
 import com.mpautasso.dto.prestaciones.PrestacionResponse;
+import com.mpautasso.dto.prestaciones.PrestacionUpdateRequest;
 import com.mpautasso.exception.InvalidArgumentException;
 import com.mpautasso.model.Prestacion;
 import com.mpautasso.model.Producto;
@@ -25,6 +26,16 @@ public class PrestacionMapper {
         }
         if (prestacionRequest.getTipo().equalsIgnoreCase("producto")) {
             return new Producto(prestacionRequest.getNombre(), prestacionRequest.getCosto());
+        }
+        throw new InvalidArgumentException("Tipo invalido de prestacion");
+    }
+
+    public Prestacion prestacionUpdateRequestToEntity(PrestacionUpdateRequest prestacionRequest) {
+        if (prestacionRequest.getTipo().equalsIgnoreCase("servicio")) {
+            return new Servicio(prestacionRequest.getId(), prestacionRequest.getNombre(), prestacionRequest.getCosto());
+        }
+        if (prestacionRequest.getTipo().equalsIgnoreCase("producto")) {
+            return new Producto(prestacionRequest.getId(), prestacionRequest.getNombre(), prestacionRequest.getCosto());
         }
         throw new InvalidArgumentException("Tipo invalido de prestacion");
     }
