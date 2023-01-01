@@ -15,10 +15,13 @@ public class Servicio extends Prestacion {
     public Servicio(String nombre, Double costo){
         super(nombre, costo);
     }
+    public Servicio(Long id, String nombre, Double costo){
+        super(id, nombre, costo);
+    }
 
     @Override
     public String getType() {
-        return "Servicio";
+        return "servicio";
     }
     @Override
     public String toString(){
