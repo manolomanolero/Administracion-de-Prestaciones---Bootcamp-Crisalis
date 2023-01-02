@@ -41,7 +41,7 @@ public class PrestacionesServiceImpl implements PrestacionesService {
     public PrestacionResponse buscarPrestacion(Long id) {
         Optional<Prestacion> prestacion = prestacionesRepository.findById(id);
         if(prestacion.isEmpty()){
-            throw new EntityNotFoundException("No se encontró la prestación a editar");
+            throw new EntityNotFoundException("No se encontró la prestación");
         }
         return prestacionMapper.prestacionEntityToDto(prestacion.get());
     }
