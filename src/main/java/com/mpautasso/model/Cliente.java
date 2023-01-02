@@ -34,6 +34,13 @@ public abstract class Cliente {
         this.apellido = apellido;
     }
 
+    public Cliente(Long id, Long dni, String nombre, String apellido) {
+        this.id = id;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
     public Cliente(Long dni, String nombre, String apellido, Empresa empresa) {
         this(dni, nombre, apellido);
         this.empresa = empresa;

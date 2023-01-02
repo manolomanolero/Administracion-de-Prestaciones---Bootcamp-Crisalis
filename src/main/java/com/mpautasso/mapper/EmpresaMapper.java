@@ -18,4 +18,8 @@ public class EmpresaMapper {
     public Empresa empresaRequestToEntity(EmpresaRequest empresaRequest){
         return modelMapper.map(empresaRequest, Empresa.class);
     }
+
+    public Empresa empresaResponseToEntity(EmpresaResponse empresaResponse){
+        return modelMapper.map(empresaResponse, Empresa.class);
+    }
 }

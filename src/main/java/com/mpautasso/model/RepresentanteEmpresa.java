@@ -14,6 +14,10 @@ public class RepresentanteEmpresa extends Cliente {
         super(dni, nombre, apellido, empresa);
     }
 
+    public RepresentanteEmpresa(Long id, Long dni, String nombre, String apellido, Empresa empresa) {
+        super(id, dni, nombre, apellido, empresa);
+    }
+
     @Override
     public String getType() {
         return "Representante empresa";

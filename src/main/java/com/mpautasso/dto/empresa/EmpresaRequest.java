@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmpresaRequest {
+    private Long id;
     private Long cuit;
     private String razonSocial;
 }

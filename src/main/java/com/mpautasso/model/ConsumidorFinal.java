@@ -17,6 +17,10 @@ public class ConsumidorFinal extends Cliente {
         super(dni, nombre, apellido);
     }
 
+    public ConsumidorFinal(Long id, Long dni, String nombre, String apellido) {
+        super(id, dni, nombre, apellido);
+    }
+
     @Override
     public String getType() {
         return "Consumidor final";
