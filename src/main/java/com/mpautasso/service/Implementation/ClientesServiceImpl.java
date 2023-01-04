@@ -49,6 +49,10 @@ public class ClientesServiceImpl implements ClientesService {
             cliente.setEmpresa(empresaMapper.empresaResponseToEntity(
                     empresaService.buscarEmpresaPorId(cliente.getEmpresa().getId())));
         }
+        Optional<Cliente> clienteConMismoDniYEmpresa = clientesRepository.findByDniAndEmpresaId(cliente.getDni(),cliente.getEmpresa());
+        if(clienteConMismoDniYEmpresa.isPresent() && !clienteConMismoDniYEmpresa.get().getId().equals(cliente.getId())){
+            throw new InvalidPetitionException("Ya existe un cliente con mismo dni y empresa que representa");
+        }
         Optional<Cliente> clienteBD = clientesRepository.findByDniAndEmpresaId(cliente.getDni(), cliente.getEmpresa());
         if (clienteBD.isPresent()) {
             if (cliente.getEmpresa() != null) {
@@ -65,11 +69,23 @@ public class ClientesServiceImpl implements ClientesService {
     @Override
     public ClienteResponse editarCliente(ClienteUpdateRequest clienteRequest) {
         Cliente clienteActualizado = clienteMapper.clienteUpdateRequestToEntity(clienteRequest);
-        Optional<Cliente> clienteBD = clientesRepository.findById(clienteActualizado.getId());
-        if(clienteBD.isEmpty()){
+        Optional<Cliente> clienteConMismoDniYEmpresa = clientesRepository.findByDniAndEmpresaId(clienteActualizado.getDni(),clienteActualizado.getEmpresa());
+        if(clienteConMismoDniYEmpresa.isPresent() && !clienteConMismoDniYEmpresa.get().getId().equals(clienteActualizado.getId())){
+            throw new InvalidPetitionException("Ya existe un cliente con mismo dni y empresa que representa");
+        }
+        Optional<Cliente> clienteOptBD = clientesRepository.findById(clienteActualizado.getId());
+        if(clienteOptBD.isEmpty()){
             throw new EntityNotFoundException("No se encontró el cliente a actualizar");
         }
-        return clienteMapper.clienteEntityToResponse(clientesRepository.save(clienteActualizado));
+        Cliente clienteBD = clienteOptBD.get();
+        clienteBD.setEmpresa(clienteActualizado.getEmpresa());
+        clienteBD.setDni(clienteActualizado.getDni());
+        clienteBD.setNombre(clienteActualizado.getNombre());
+        clienteBD.setApellido(clienteActualizado.getApellido());
+        /*if(clienteBD instanceof RepresentanteEmpresa && clienteBD.getEmpresa() == null){
+            return clienteMapper.clienteEntityToResponse(clientesRepository.save(clienteBD));
+        }*/
+        return clienteMapper.clienteEntityToResponse(clientesRepository.save(clienteBD));
     }
 
     @Override

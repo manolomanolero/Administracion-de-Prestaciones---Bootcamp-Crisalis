@@ -25,11 +25,10 @@ public class ClienteMapper {
     private EmpresaRepository empresaRepository;
 
     public ClienteResponse clienteEntityToResponse(Cliente cliente){
-        if(cliente.getType().equalsIgnoreCase("consumidor final")){
+        if(cliente.getEmpresa() == null){
             return new ClienteResponse(cliente.getId(),
                     cliente.getDni(), cliente.getNombre(), cliente.getApellido());
-        }
-        if(cliente.getType().equalsIgnoreCase("representante empresa")){
+        } else if(cliente.getEmpresa() != null){
             return new ClienteResponse(cliente.getId(), cliente.getDni(), cliente.getNombre(), cliente.getApellido(),
                                         empresaMapper.empresaEntityToResponse(cliente.getEmpresa()));
         }
@@ -37,8 +36,9 @@ public class ClienteMapper {
     }
 
     public Cliente clienteRequestToEntity(ClienteRequest clienteRequest){
-        if(clienteRequest.getEmpresaId() > 0){
-            Optional<Empresa> empresa = empresaRepository.findById(clienteRequest.getEmpresaId());
+        if(clienteRequest.getEmpresa() != null
+                && clienteRequest.getEmpresa().getId() != null && clienteRequest.getEmpresa().getId() > 0){
+            Optional<Empresa> empresa = empresaRepository.findById(clienteRequest.getEmpresa().getId());
             if(empresa.isEmpty()){
                 throw new InvalidArgumentException("No se encontró la empresa en sistema.");
             }
@@ -54,8 +54,9 @@ public class ClienteMapper {
     }
 
     public Cliente clienteUpdateRequestToEntity(ClienteUpdateRequest clienteRequest){
-        if(clienteRequest.getEmpresaId() > 0){
-            Optional<Empresa> empresa = empresaRepository.findById(clienteRequest.getEmpresaId());
+        if(clienteRequest.getEmpresa() != null
+                && clienteRequest.getEmpresa().getId() != null && clienteRequest.getEmpresa().getId() > 0){
+            Optional<Empresa> empresa = empresaRepository.findById(clienteRequest.getEmpresa().getId());
             if(empresa.isEmpty()){
                 throw new InvalidArgumentException("No se encontró la empresa en sistema.");
             }
