@@ -27,12 +27,6 @@ public abstract class Prestacion {
         this.costo = costo;
     }
 
-    /*public Prestacion(Long id, String nombre, Double costo) {
-        this.id = id;
-        this.nombre = nombre.toLowerCase();
-        this.costo = costo;
-    }*/
-
     public abstract String getType();
 
 }

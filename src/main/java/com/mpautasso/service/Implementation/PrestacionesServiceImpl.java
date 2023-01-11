@@ -66,4 +66,9 @@ public class PrestacionesServiceImpl implements PrestacionesService {
             throw new InvalidArgumentException("No se encontro la prestacion a borrar");
         }
     }
+
+    @Override
+    public boolean existePrestacion(Long id) {
+        return prestacionesRepository.existsById(id);
+    }
 }

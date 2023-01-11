@@ -13,4 +13,5 @@ public interface PrestacionesService {
     PrestacionResponse buscarPrestacion(Long id);
     PrestacionResponse actualizarPrestacion(PrestacionUpdateRequest prestacionRequest);
     void eliminarPrestacion(Long id);
+    boolean existePrestacion(Long id);
 }
