@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -21,13 +22,18 @@ public class Empresa {
     @Column(name = "razon_social", unique = true)
     private String razonSocial;
 
+    @Column(name = "inicio_actividades")
+    @Temporal(TemporalType.DATE)
+    private Date inicioActividades;
+
     public Empresa(Long id) {
         this.id = id;
     }
 
-    public Empresa(Long cuit, String razonSocial) {
+    public Empresa(Long cuit, String razonSocial, Date inicioActividades) {
         this.cuit = cuit;
         this.razonSocial = razonSocial;
+        this.inicioActividades = inicioActividades;
     }
 
 /* TODO: implementar fecha de inicio
