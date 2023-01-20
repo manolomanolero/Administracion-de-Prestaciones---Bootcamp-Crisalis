@@ -14,8 +14,9 @@ import java.util.List;
 public class DetallesPedidoResponse {
     private Long id;
     private int cantidad;
-    private PrestacionResponse prestacionResponse;
+    private PrestacionResponse prestacion;
     private int garantia;
-    private List<ImpuestoResponse> impuestoRequest;
+    private List<ImpuestoResponse> impuestos;
+    private Double costoProducto;
     private Double costoNeto;
 }

@@ -21,7 +21,7 @@ public class DetallesPedido {
     @Column(nullable = false)
     private int cantidad;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade= CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn( name = "prestacion_id", referencedColumnName = "id")
     private Prestacion prestacion;
 

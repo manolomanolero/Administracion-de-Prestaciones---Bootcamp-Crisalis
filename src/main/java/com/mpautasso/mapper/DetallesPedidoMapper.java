@@ -24,11 +24,11 @@ public class DetallesPedidoMapper {
     private PrestacionMapper prestacionMapper;
 
     public DetallesPedido requestToEntity(DetallesPedidoRequest detallesPedidoRequest){
-        List<Impuesto> impuestos = detallesPedidoRequest.getImpuestoRequest()
+        List<Impuesto> impuestos = detallesPedidoRequest.getImpuestos()
                                         .stream().map(impuestosMapper::fromImpuestoRequestToEntity)
                                         .collect(Collectors.toList());
 
-        Prestacion prestacion = prestacionMapper.prestacionUpdateRequestToEntity(detallesPedidoRequest.getPrestacionRequest());
+        Prestacion prestacion = prestacionMapper.prestacionUpdateRequestToEntity(detallesPedidoRequest.getPrestacion());
 
         return new DetallesPedido(detallesPedidoRequest.getId(), detallesPedidoRequest.getCantidad(), prestacion,
                 impuestos, detallesPedidoRequest.getGarantia());
@@ -41,7 +41,7 @@ public class DetallesPedidoMapper {
         PrestacionResponse prestacion = prestacionMapper.prestacionEntityToDto(detallesPedido.getPrestacion());
         return new DetallesPedidoResponse(
                 detallesPedido.getId(), detallesPedido.getCantidad(), prestacion, detallesPedido.getGarantia(),
-                impuestosResponse, detallesPedido.getCostoNeto()
+                impuestosResponse, detallesPedido.getCostoProducto(), detallesPedido.getCostoNeto()
         );
     }
 }

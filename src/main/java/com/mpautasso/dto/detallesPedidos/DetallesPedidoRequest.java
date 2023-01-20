@@ -14,7 +14,7 @@ import java.util.List;
 public class DetallesPedidoRequest {
     private Long id;
     private int cantidad;
-    private PrestacionUpdateRequest prestacionRequest;
+    private PrestacionUpdateRequest prestacion;
     private int garantia;
-    private List<ImpuestoRequest> impuestoRequest;
+    private List<ImpuestoRequest> impuestos;
 }
