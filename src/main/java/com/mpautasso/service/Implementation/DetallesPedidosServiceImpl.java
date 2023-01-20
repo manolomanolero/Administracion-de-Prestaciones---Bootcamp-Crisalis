@@ -49,7 +49,7 @@ public class DetallesPedidosServiceImpl implements DetallesPedidosService {
         if(detallePedidoRequest.getCantidad() <= 0){
             throw new InvalidArgumentException("La cantidad de la prestación debe ser válida");
         }
-        if(!prestacionesService.existePrestacion(detallePedidoRequest.getPrestacionRequest().getId())){
+        if(!prestacionesService.existePrestacion(detallePedidoRequest.getPrestacion().getId())){
             throw new InvalidArgumentException("La prestacion no se ha encontrado.");
         }
 
