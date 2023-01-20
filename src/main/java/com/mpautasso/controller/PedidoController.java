@@ -4,6 +4,7 @@ import com.mpautasso.dto.StringResponse;
 import com.mpautasso.dto.pedido.PedidoRequest;
 import com.mpautasso.dto.pedido.PedidoResponse;
 import com.mpautasso.dto.pedido.PedidoUpdateRequest;
+import com.mpautasso.dto.prestaciones.PrestacionResponse;
 import com.mpautasso.service.PedidoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,11 @@ public class PedidoController {
     @GetMapping
     public ResponseEntity<List<PedidoResponse>> listarPedidos(){
         return ResponseEntity.ok(pedidoService.listarPedidos());
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<PedidoResponse> buscarPedido(@RequestParam Long id){
+        return ResponseEntity.ok(pedidoService.buscarPedido(id));
     }
 
     @PostMapping
