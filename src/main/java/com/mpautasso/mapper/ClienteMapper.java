@@ -72,5 +72,20 @@ public class ClienteMapper {
         }
     }
 
+    public Cliente clienteResponseToEntity(ClienteResponse clienteResponse){
+        if(clienteResponse.getEmpresa() != null){
+            Optional<Empresa> empresa = empresaRepository.findById(clienteResponse.getEmpresa().getId());
+            return new RepresentanteEmpresa(
+                    clienteResponse.getId(),
+                    clienteResponse.getDni(),
+                    clienteResponse.getNombre(),
+                    clienteResponse.getApellido(),
+                    empresa.get());
+        } else {
+            return new ConsumidorFinal(clienteResponse.getId(), clienteResponse.getDni(), clienteResponse.getNombre(),
+                    clienteResponse.getApellido());
+        }
+    }
+
 
 }

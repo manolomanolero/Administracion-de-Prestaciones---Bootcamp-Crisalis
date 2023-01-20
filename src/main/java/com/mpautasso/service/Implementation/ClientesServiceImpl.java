@@ -43,6 +43,15 @@ public class ClientesServiceImpl implements ClientesService {
     }
 
     @Override
+    public Cliente buscarEntidad(Long id) {
+        Optional<Cliente> clienteOpt = clientesRepository.findById(id);
+        if(clienteOpt.isEmpty()){
+            throw new EntityNotFoundException("No se encontro el cliente");
+        }
+        return clienteOpt.get();
+    }
+
+    @Override
     public ClienteResponse crearCliente(ClienteRequest clienteRequest) {
         Cliente cliente = clienteMapper.clienteRequestToEntity(clienteRequest);
         if (cliente.getEmpresa() != null) {
