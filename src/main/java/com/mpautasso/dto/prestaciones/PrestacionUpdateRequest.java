@@ -10,4 +10,5 @@ public class PrestacionUpdateRequest {
     private String nombre;
     private Double costo;
     private String tipo;
+    private Double costoSoporte;
 }

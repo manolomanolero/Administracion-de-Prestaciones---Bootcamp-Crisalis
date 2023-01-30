@@ -29,4 +29,7 @@ public abstract class Prestacion {
 
     public abstract String getType();
 
+    public Double getCargoSoporte(){
+        return 0D;
+    }
 }

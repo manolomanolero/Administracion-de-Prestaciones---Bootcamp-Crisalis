@@ -9,4 +9,5 @@ public class PrestacionRequest {
     private String nombre;
     private Double costo;
     private String tipo;
+    private Double costoSoporte;
 }

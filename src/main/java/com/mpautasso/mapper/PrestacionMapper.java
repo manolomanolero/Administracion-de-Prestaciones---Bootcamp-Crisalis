@@ -17,12 +17,14 @@ public class PrestacionMapper {
     private ModelMapper modelMapper;
 
     public PrestacionResponse prestacionEntityToDto(Prestacion prestacion) {
-        return new PrestacionResponse(prestacion.getId(), prestacion.getNombre(), prestacion.getCosto(), prestacion.getType());
+        return new PrestacionResponse(prestacion.getId(), prestacion.getNombre(), prestacion.getCosto(),
+                prestacion.getCargoSoporte(), prestacion.getType());
     }
 
     public Prestacion prestacionRequestToEntity(PrestacionRequest prestacionRequest) {
         if (prestacionRequest.getTipo().equalsIgnoreCase("servicio")) {
-            return new Servicio(prestacionRequest.getNombre(), prestacionRequest.getCosto());
+            return new Servicio(prestacionRequest.getNombre(), prestacionRequest.getCosto(),
+                    prestacionRequest.getCostoSoporte());
         }
         if (prestacionRequest.getTipo().equalsIgnoreCase("producto")) {
             return new Producto(prestacionRequest.getNombre(), prestacionRequest.getCosto());
@@ -32,7 +34,8 @@ public class PrestacionMapper {
 
     public Prestacion prestacionUpdateRequestToEntity(PrestacionUpdateRequest prestacionRequest) {
         if (prestacionRequest.getTipo().equalsIgnoreCase("servicio")) {
-            return new Servicio(prestacionRequest.getId(), prestacionRequest.getNombre(), prestacionRequest.getCosto());
+            return new Servicio(prestacionRequest.getId(), prestacionRequest.getNombre(),
+                    prestacionRequest.getCosto(), prestacionRequest.getCostoSoporte());
         }
         if (prestacionRequest.getTipo().equalsIgnoreCase("producto")) {
             return new Producto(prestacionRequest.getId(), prestacionRequest.getNombre(), prestacionRequest.getCosto());

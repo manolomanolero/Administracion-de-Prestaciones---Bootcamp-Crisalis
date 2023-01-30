@@ -9,5 +9,6 @@ public class PrestacionResponse {
     private Long id;
     private String nombre;
     private Double costo;
+    private Double costoSoporte;
     private String tipo;
 }
