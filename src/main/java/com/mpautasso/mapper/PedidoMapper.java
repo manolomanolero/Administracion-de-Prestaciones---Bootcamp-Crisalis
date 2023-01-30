@@ -1,5 +1,6 @@
 package com.mpautasso.mapper;
 
+import com.mpautasso.dto.pedido.PedidoCompletoResponse;
 import com.mpautasso.dto.pedido.PedidoRequest;
 import com.mpautasso.dto.pedido.PedidoResponse;
 import com.mpautasso.dto.pedido.PedidoUpdateRequest;
@@ -19,25 +20,27 @@ public class PedidoMapper {
     @Autowired
     private ClientesService clientesService;
 
-    public Pedido fromRequestToEntity(PedidoRequest pedidoRequest){
+    public Pedido fromRequestToEntity(PedidoRequest pedidoRequest, boolean tieneDescuento){
         return new Pedido(
                 clientesService.buscarEntidad(
-                        pedidoRequest.getClienteId()
+                        pedidoRequest.getCliente().getId()
                 ),
                 pedidoRequest.getDetallesPedidos().stream()
                         .map(detallesPedidoMapper::requestToEntity)
-                        .collect(Collectors.toList())
+                        .collect(Collectors.toSet()),
+                tieneDescuento
         );
     }
 
-    public Pedido fromUpdateRequestToEntity(PedidoUpdateRequest pedidoRequest){
+    public Pedido fromUpdateRequestToEntity(PedidoUpdateRequest pedidoRequest, boolean tieneDescuento){
         return new Pedido(
                 pedidoRequest.getId(),
                 clienteMapper.clienteRequestToEntity(pedidoRequest.getCliente()),
                 pedidoRequest.getFechaPedido(),
                 pedidoRequest.getDetallesPedidos().stream()
                         .map(detallesPedidoMapper::requestToEntity)
-                        .collect(Collectors.toList())
+                        .collect(Collectors.toSet()),
+                tieneDescuento
         );
     }
 
@@ -51,6 +54,23 @@ public class PedidoMapper {
                 pedido.getDetallesPedidoList().stream()
                         .map(detallesPedidoMapper::entityToResponse)
                         .collect(Collectors.toList())
+        );
+    }
+
+    public PedidoCompletoResponse fromEntityToResponseCompleta(Pedido pedido){
+        return new PedidoCompletoResponse(
+                pedido.getId(),
+                clienteMapper.clienteEntityToResponse(pedido.getCliente()),
+                pedido.getFechaPedido(),
+                pedido.getCostoBruto(),
+                pedido.getCostoConImpuestos(),
+                pedido.isTieneDescuento(),
+                pedido.getTotalDescuento(),
+                pedido.getCostoFinal(),
+                pedido.getDetallesPedidoList().stream()
+                        .map(detallesPedidoMapper::entityToResponse)
+                        .collect(Collectors.toList()),
+                pedido.getDetallesImpuestosPedidos()
         );
     }
 }

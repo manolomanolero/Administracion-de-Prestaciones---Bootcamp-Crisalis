@@ -1,6 +1,7 @@
 package com.mpautasso.controller;
 
 import com.mpautasso.dto.StringResponse;
+import com.mpautasso.dto.pedido.PedidoCompletoResponse;
 import com.mpautasso.dto.pedido.PedidoRequest;
 import com.mpautasso.dto.pedido.PedidoResponse;
 import com.mpautasso.dto.pedido.PedidoUpdateRequest;
@@ -28,6 +29,11 @@ public class PedidoController {
     @GetMapping("/search")
     public ResponseEntity<PedidoResponse> buscarPedido(@RequestParam Long id){
         return ResponseEntity.ok(pedidoService.buscarPedido(id));
+    }
+
+    @GetMapping("/completo")
+    public ResponseEntity<PedidoCompletoResponse> buscarPedidoCompleto(@RequestParam Long id){
+        return ResponseEntity.ok(pedidoService.buscarPedidoCompleto(id));
     }
 
     @PostMapping
