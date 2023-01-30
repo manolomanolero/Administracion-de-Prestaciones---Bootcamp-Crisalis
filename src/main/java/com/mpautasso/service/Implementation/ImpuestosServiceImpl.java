@@ -72,7 +72,7 @@ public class ImpuestosServiceImpl implements ImpuestosService {
 
     @Override
     public void borrarImpuesto(Long id) {
-        if(impuestosRepository.existsById(id)){
+        if(!impuestosRepository.existsById(id)){
             throw new EntityNotFoundException("No se encontro el impuesto a eliminar");
         }
         impuestosRepository.deleteById(id);
