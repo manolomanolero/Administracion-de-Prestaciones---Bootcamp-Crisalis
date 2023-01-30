@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -16,5 +17,6 @@ public class DetallesPedidoRequest {
     private int cantidad;
     private PrestacionUpdateRequest prestacion;
     private int garantia;
-    private List<ImpuestoRequest> impuestos;
+    private boolean soporteEspecial;
+    private Set<ImpuestoRequest> impuestos;
 }

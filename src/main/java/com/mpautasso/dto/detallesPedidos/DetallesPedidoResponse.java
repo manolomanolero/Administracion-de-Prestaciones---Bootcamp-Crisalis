@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +16,8 @@ public class DetallesPedidoResponse {
     private int cantidad;
     private PrestacionResponse prestacion;
     private int garantia;
-    private List<ImpuestoResponse> impuestos;
+    private boolean soporteEspecial;
+    private Set<ImpuestoResponse> impuestos;
     private Double costoProducto;
     private Double costoNeto;
 }
