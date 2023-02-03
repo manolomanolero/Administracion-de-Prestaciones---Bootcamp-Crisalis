@@ -1,0 +1,1161 @@
+{
+	"info": {
+		"_postman_id": "a3d697a6-5dba-40e8-bcef-907811f9b207",
+		"name": "Gestion de Prestaciones - Crisalis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14617154"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Loguear usuario",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"carlos\",\r\n    \"password\":\"123\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar usuario",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"carlos\",\r\n    \"password\":\"123\",\r\n    \"email\":\"carlos@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prestaciones",
+			"item": [
+				{
+					"name": "Listar Prestaciones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLGNhcmxvcyxjYXJsb3NAY2FybG9zLmNvbSIsInJvbGVzIjoiW1JvbChpZD0xLCBub21icmU9Uk9MRV9VU0VSKV0iLCJpYXQiOjE2NzM2MjA0OTYsImV4cCI6MTY3MzcwNjg5Nn0._doRy4f9lJqkVkvgJ5VrY6KGvyNQpDAIJjiLJoBRkyPFjD2D3rs27ZbYiC__KWbZaYupO5YOGyl9cIkx1w7_VA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/prestaciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"prestaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Prestacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3LGNhcmxvcyxjYXJsb3MiLCJyb2xlcyI6IltSb2woaWQ9MSwgbm9tYnJlPVJPTEVfVVNFUildIiwiaWF0IjoxNjcyNDEzNTQyLCJleHAiOjE2NzI0OTk5NDJ9.hpRVkxIguy9KUYA7t_RCVm_XuoQC220lDCkR0Kk-q3XPglY3VFSFIxooIs6oxRnnlZPdL1kMwPvYR93adqZQ-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/prestaciones/search?id=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"prestaciones",
+								"search"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Prestacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3LGNhcmxvcyxjYXJsb3MiLCJyb2xlcyI6IltSb2woaWQ9MSwgbm9tYnJlPVJPTEVfVVNFUildIiwiaWF0IjoxNjcyNDE4NDIwLCJleHAiOjE2NzI1MDQ4MjB9.RCACCDJ61bI9ojodzUXGij7RTmp4EhEUuB_vX5jnYgaVS1IoFt84XLVkO1aEoHNyRrrVLP7o8_Pt9-B7cVbYag",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "id",
+								"value": "10",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/prestaciones?id=15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"prestaciones"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Prestacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLGNhcmxvcyxjYXJsb3NAY2FybG9zLmNvbSIsInJvbGVzIjoiW1JvbChpZD0xLCBub21icmU9Uk9MRV9VU0VSKV0iLCJpYXQiOjE2NzUwMDE1NTgsImV4cCI6MTY3NTA4Nzk1OH0.6aN4eO61xaBcxMyLxYMuRemb47LCpY0858gEjPNcsS_5hYUtIDgmmNJkW8NN0whrVh1wfQXSbknnknv2sKYcpg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"otros\",\n    \"costo\": 222,\n    \"tipo\": \"servicio\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/prestaciones/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"prestaciones",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Prestacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3LGNhcmxvcyxjYXJsb3MiLCJyb2xlcyI6IltSb2woaWQ9MSwgbm9tYnJlPVJPTEVfVVNFUildIiwiaWF0IjoxNjcyNjAxNjEwLCJleHAiOjE2NzI2ODgwMTB9.rY-4lUF9Ldoey2-4Tl1qds-o8IewgFBGXbpxCpyPkWnrwXLiQQlGS3ZMxgXDBQiNftBvnLDYGUyb1nxuO1ct9w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"nombre\": \"Internet\",\n    \"costo\": 1950.5,\n    \"tipo\": \"servicio\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/prestaciones/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"prestaciones",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Empresas",
+					"item": [
+						{
+							"name": "Crear empresa",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3LGNhcmxvcyxjYXJsb3MiLCJyb2xlcyI6IltSb2woaWQ9MSwgbm9tYnJlPVJPTEVfVVNFUildIiwiaWF0IjoxNjcyMDYyMzIwLCJleHAiOjE2NzIxNDg3MjB9.FfbT2dGpQsw8VR952LBT8sjAdk5dvF8_ZnZ9H3OzjNd71wU2g-hEhw0zUxmMNWVksrXPi9gdkoHEKcdwvpGh9g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cuit\": 40000000,\n    \"razonSocial\": \"Marolio\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/clientes/empresas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"clientes",
+										"empresas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar empresa",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3LGNhcmxvcyxjYXJsb3MiLCJyb2xlcyI6IltSb2woaWQ9MSwgbm9tYnJlPVJPTEVfVVNFUildIiwiaWF0IjoxNjcyNjYwNzQzLCJleHAiOjE2NzI3NDcxNDN9.1MLB6XMQWaHPP2LReM3t30j3sGSoMqbbmMlIOR6AAleHxio-gRAScJrJs3ETxW8toOSsQoEGa0eDGWt4kZoe0g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"dni\": 40000000,\n    \"nombre\": \"Marcos\",    \n    \"apellido\": \"Paz\",\n    \"empresaId\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/clientes/empresas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"clientes",
+										"empresas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar empresa",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3LGNhcmxvcyxjYXJsb3MiLCJyb2xlcyI6IltSb2woaWQ9MSwgbm9tYnJlPVJPTEVfVVNFUildIiwiaWF0IjoxNjcyNjY3NjQyLCJleHAiOjE2NzI3NTQwNDJ9.cpMztNuO-4uOTw7rWhQZLl3-ZqUBJe2eZVeyzr5-_IhDKlEx-Yvmtic2Q2iWtiaLQOC7ouStLpg__yOwJ7Ce7A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"dni\": 40000000,\n    \"nombre\": \"Marcos\",    \n    \"apellido\": \"Paz\",\n    \"empresaId\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/clientes/empresas/search?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"clientes",
+										"empresas",
+										"search"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Crear Cliente Consumidor final",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3LGNhcmxvcyxjYXJsb3MiLCJyb2xlcyI6IltSb2woaWQ9MSwgbm9tYnJlPVJPTEVfVVNFUildIiwiaWF0IjoxNjcyMDYyMzIwLCJleHAiOjE2NzIxNDg3MjB9.FfbT2dGpQsw8VR952LBT8sjAdk5dvF8_ZnZ9H3OzjNd71wU2g-hEhw0zUxmMNWVksrXPi9gdkoHEKcdwvpGh9g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dni\": 40000000,\n    \"nombre\": \"Marcos\",    \n    \"apellido\": \"Paz\",\n    \"empresaId\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clientes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Cliente Consumidor final",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3LGNhcmxvcyxjYXJsb3MiLCJyb2xlcyI6IltSb2woaWQ9MSwgbm9tYnJlPVJPTEVfVVNFUildIiwiaWF0IjoxNjcyNjY3NjQyLCJleHAiOjE2NzI3NTQwNDJ9.cpMztNuO-4uOTw7rWhQZLl3-ZqUBJe2eZVeyzr5-_IhDKlEx-Yvmtic2Q2iWtiaLQOC7ouStLpg__yOwJ7Ce7A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"dni\": 40000000,\n    \"nombre\": \"Marcos Santos\",    \n    \"apellido\": \"Paz\",\n    \"empresaId\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clientes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Cliente Representante empresa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3LGNhcmxvcyxjYXJsb3MiLCJyb2xlcyI6IltSb2woaWQ9MSwgbm9tYnJlPVJPTEVfVVNFUildIiwiaWF0IjoxNjcyMDY4MDE0LCJleHAiOjE2NzIxNTQ0MTR9.0glJ_0U7tfvjcNQPHOaHOyOH2zo8CSfpp2r07_6lGiLGgRQqkcxjcXx3nTPLlKneWDVrLU03kPkarPDu0Tsp-Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dni\": 40300236,\n    \"nombre\": \"Loreta\",    \n    \"apellido\": \"Rojas\",\n    \"empresaId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clientes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Clientes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NDQ3Njg3MCwiZXhwIjoxNjc0NTYzMjcwfQ.GxQnZdNUsSI2S2gS4id0bGlBDdl8wAAglSuhJawgK7_VYLZRivwdXUErd4aU-2_Pd9uEx5pftVHODeTDEhv2ww",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "Listar pedidos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTAzODYxMSwiZXhwIjoxNjc1MTI1MDExfQ.1YVC-DsLKQDgSXOUTZ7cPAxJfG_rGzHGCq-FKyefdmav4mrbr2h7XhZ9Y4rUalt_GS3YJsRkgyBf3QIEVgJUDg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NDQ4ODkyMSwiZXhwIjoxNjc0NTc1MzIxfQ.xamPHbIU7TQgIy7Z_3trorx07axN3ZIqQ8mN0Ed4DT6FaSRB9VovaSmJQiPDZljTrSyGmWfDF-0kP_8MHU5Q_g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar pedido por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTAwNzE3NywiZXhwIjoxNjc1MDkzNTc3fQ.4lvFgeY8gD2su0xVkpTfPZ_VGvVPewHvJXgPWmn0Wzw2lhBN0rf3OClbwLqQTbxqPdUBIrcDjDO_fWKLszub4Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/search?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"search"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar pedido Completo por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTAwNzE3NywiZXhwIjoxNjc1MDkzNTc3fQ.4lvFgeY8gD2su0xVkpTfPZ_VGvVPewHvJXgPWmn0Wzw2lhBN0rf3OClbwLqQTbxqPdUBIrcDjDO_fWKLszub4Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/completo?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"completo"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear pedido simple consumidor final",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLGNhcmxvcyxjYXJsb3NAY2FybG9zLmNvbSIsInJvbGVzIjoiW1JvbChpZD0xLCBub21icmU9Uk9MRV9VU0VSKV0iLCJpYXQiOjE2NzQ5OTkzNTMsImV4cCI6MTY3NTA4NTc1M30.nOFoNG9HPcm_3N2F_Q01Udh-LbKYSreR0EtZ3duXKR_iAxiNopF4HyUAQp2rMex5UTzz-C6fU0ZHsNzVC95hkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"cliente\":{\n        \"id\": 1\n    },\n    \"detallesPedidos\": [\n            {\n            \"cantidad\": 1,\n            \"prestacion\": {\n                \"id\": 1,\n                \"nombre\": \"fideos\",\n                \"costo\": 160.0,\n                \"tipo\": \"producto\"\n            },\n            \"garantia\": 0,\n            \"impuestos\": []\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear pedido 2 prestaciones con impuestos representante empresa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLGNhcmxvcyxjYXJsb3NAY2FybG9zLmNvbSIsInJvbGVzIjoiW1JvbChpZD0xLCBub21icmU9Uk9MRV9VU0VSKV0iLCJpYXQiOjE2NzQ5OTkzNTMsImV4cCI6MTY3NTA4NTc1M30.nOFoNG9HPcm_3N2F_Q01Udh-LbKYSreR0EtZ3duXKR_iAxiNopF4HyUAQp2rMex5UTzz-C6fU0ZHsNzVC95hkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{       \"cliente\": {\n        \"id\": 1,\n        \"dni\": 22222222,\n        \"nombre\": \"Marcos\",\n        \"apellido\": \"Perez\",\n        \"empresa\": null\n    },\n    \"fecha\": \"2023-01-29T13:36:07.356+00:00\",\n    \"costoBruto\": 2460,\n    \"costoFinal\": 3099.6,\n    \"detallesPedidos\": [\n        {\n            \"id\": null,\n            \"cantidad\": 1,\n            \"prestacion\": {\n                \"id\": 1,\n                \"nombre\": \"fideos\",\n                \"costo\": 160.0,\n                \"tipo\": \"producto\"\n            },\n            \"garantia\": 0,\n            \"soporteEspecial\": false,\n            \"impuestos\": [\n                {\n                    \"id\": 1,\n                    \"nombre\": \"IVA\",\n                    \"porcentaje\": 21.0\n                },\n                {\n                    \"id\": 2,\n                    \"nombre\": \"Ingresos Brutos\",\n                    \"porcentaje\": 5.0\n                }\n            ],\n            \"costoProducto\": 160.0,\n            \"costoNeto\": 201.6\n        },\n        {\n            \"id\":null,\n            \"cantidad\": 1,\n            \"prestacion\": {\n                \"id\": 2,\n                \"nombre\": \"internet\",\n                \"costo\": 2300.0,\n                \"tipo\": \"servicio\"\n            },\n            \"garantia\": 0,\n            \"soporteEspecial\": false,\n            \"impuestos\": [\n                {\n                    \"id\": 1,\n                    \"nombre\": \"IVA\",\n                    \"porcentaje\": 21.0\n                },\n                {\n                    \"id\": 2,\n                    \"nombre\": \"Ingresos Brutos\",\n                    \"porcentaje\": 5.0\n                }\n            ],\n            \"costoProducto\": 2300,\n            \"costoNeto\": 2898\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar 1 detalle en pedido simple consumidor final",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NDQ4OTk1MSwiZXhwIjoxNjc0NTc2MzUxfQ.8AhixFc7EDg-AwjnsrM3bDSRlnotqBtUSNCkVWEee2IVppAlWd5hun1AU4YBePrvXN0meq2SmxFWeHFOhnnfQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"id\":18,\n    \"cliente\":{\n        \"id\": 1\n    },\n    \"detallesPedidos\": [\n            {\n            \"id\":15,\n            \"cantidad\": 3,\n            \"prestacion\": {\n                \"id\": 1,\n                \"nombre\": \"fideos\",\n                \"costo\": 160.0,\n                \"tipo\": \"producto\"\n            },\n            \"garantia\": 0,\n            \"impuestos\": []\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Impuestos",
+			"item": [
+				{
+					"name": "Listar impuestos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3Mzg3ODc5OCwiZXhwIjoxNjczOTY1MTk4fQ.5f0vyHy9ZFW989fED7gWA4Fza7DLsdSqQxO9mzfA3o0ep3CjWXWAQFMor_MHFHDZqvc4pXy2MLYzbY60DHLMDg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/impuestos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"impuestos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear impuesto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTA4MDk1NSwiZXhwIjoxNjc1MTY3MzU1fQ._euYRaHjaIddRMYCfp8R7dYQFEZKjFxX6n6J1aVtQaYZxUJaQzxyYnLlY_oHer-346hsV1BwLe5BqbxjSSc5LQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":null,\n    \"nombre\": \"impuesto a importaciones\",\n    \"porcentaje\": 30\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/impuestos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"impuestos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar impuesto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTA4MDk1NSwiZXhwIjoxNjc1MTY3MzU1fQ._euYRaHjaIddRMYCfp8R7dYQFEZKjFxX6n6J1aVtQaYZxUJaQzxyYnLlY_oHer-346hsV1BwLe5BqbxjSSc5LQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":5,\n    \"nombre\": \"impuesto a importaciones\",\n    \"porcentaje\": 31\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/impuestos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"impuestos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar impuesto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTA4MDk1NSwiZXhwIjoxNjc1MTY3MzU1fQ._euYRaHjaIddRMYCfp8R7dYQFEZKjFxX6n6J1aVtQaYZxUJaQzxyYnLlY_oHer-346hsV1BwLe5BqbxjSSc5LQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/impuestos?id=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"impuestos"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Servicios Contratados",
+			"item": [
+				{
+					"name": "Listar Servicios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTA4MjgzOSwiZXhwIjoxNjc1MTY5MjM5fQ.-TGrmmNPoeeZ53ok0DIgT7kIhmlEMxfGqzRKVJxrvWrEKpLkTn3wjUuFCgMYbp9c5vZvT7_i7GG5RXAf5Bj5zQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/servicios/contratados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servicios",
+								"contratados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar servicio por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTA4MjgzOSwiZXhwIjoxNjc1MTY5MjM5fQ.-TGrmmNPoeeZ53ok0DIgT7kIhmlEMxfGqzRKVJxrvWrEKpLkTn3wjUuFCgMYbp9c5vZvT7_i7GG5RXAf5Bj5zQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/servicios/contratados/search?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servicios",
+								"contratados",
+								"search"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activar servicio por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTA4MjgzOSwiZXhwIjoxNjc1MTY5MjM5fQ.-TGrmmNPoeeZ53ok0DIgT7kIhmlEMxfGqzRKVJxrvWrEKpLkTn3wjUuFCgMYbp9c5vZvT7_i7GG5RXAf5Bj5zQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/servicios/contratados/activar?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servicios",
+								"contratados",
+								"activar"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar servicio por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTA4MjgzOSwiZXhwIjoxNjc1MTY5MjM5fQ.-TGrmmNPoeeZ53ok0DIgT7kIhmlEMxfGqzRKVJxrvWrEKpLkTn3wjUuFCgMYbp9c5vZvT7_i7GG5RXAf5Bj5zQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/servicios/contratados/desactivar?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servicios",
+								"contratados",
+								"desactivar"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar servicios por id de Cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyLGNhcmxvcyxjYXJsb3NAZ21haWwuY29tIiwicm9sZXMiOiJbUm9sKGlkPTEsIG5vbWJyZT1ST0xFX1VTRVIpXSIsImlhdCI6MTY3NTA4MjgzOSwiZXhwIjoxNjc1MTY5MjM5fQ.-TGrmmNPoeeZ53ok0DIgT7kIhmlEMxfGqzRKVJxrvWrEKpLkTn3wjUuFCgMYbp9c5vZvT7_i7GG5RXAf5Bj5zQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/servicios/contratados/list?id=7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servicios",
+								"contratados",
+								"list"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
